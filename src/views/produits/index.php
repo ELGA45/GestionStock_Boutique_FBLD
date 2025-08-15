@@ -1,5 +1,9 @@
-<?php include __DIR__ . '/../templates/header.php'; 
-      include __DIR__ . '/../templates/sidebar.php'; 
+<?php 
+  include __DIR__ . '/../templates/header.php'; 
+  include __DIR__ . '/../templates/sidebar.php'; 
+
+
+  if(isset($_SESSION['connectedUser'])){
 ?>
 
 <div class="content">
@@ -10,7 +14,9 @@
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Liste des produits</h2>
-        <a href="/GestionStock_Boutique_FBLD/public/routeurs/produit.php?action=addForm" class="btn btn-dark">➕ Ajouter un produit</a>
+        <a href="/GestionStock_Boutique_FBLD/public/routeurs/produit.php?action=addForm" class="btn btn-dark">
+          ➕ Ajouter un produit
+        </a>
       </div>
 
       <div class="card shadow">
@@ -64,4 +70,11 @@
   </div>
 </div>
 
-<?php include __DIR__ . '/../templates/footer.php'; ?>
+<?php 
+    include __DIR__ . '/../templates/footer.php'; 
+  }
+  else {
+    header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?action=loginForm');
+        exit();
+  }
+?>

@@ -38,8 +38,8 @@ class Utilisateur extends BaseModel {
                                     rôle = ?,
                                     statut = ?
                               WHERE id = ?";
-      $this->query($sql, [$nom, $email, $motDePasseHache, $role, $statut, $id]);
-      return "✅ Utilisateur mise à jour avec succès";
+        $this->query($sql, [$nom, $email, $motDePasseHache, $role, $statut, $id]);
+        return "✅ Utilisateur mise à jour avec succès";
       } catch (PDOException $e) {
           return "❌ Erreur lors de la mise à jour : " . $e->getMessage();
       }
@@ -55,7 +55,7 @@ class Utilisateur extends BaseModel {
       }
   }
 
-  public function delete($id, $roleActuel){
+  public function delete($id){
         $sql = "DELETE FROM utilisateur WHERE id = ?";
         $this->query($sql, [$id]);
   }

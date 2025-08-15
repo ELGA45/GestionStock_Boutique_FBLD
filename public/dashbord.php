@@ -91,7 +91,7 @@
 
   }
   else {
-    header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?loginForm');
+    header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?action=loginForm');
         exit();
   }
 
