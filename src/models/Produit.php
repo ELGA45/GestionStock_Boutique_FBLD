@@ -6,17 +6,17 @@ class Produit extends BaseModel {
         $sql = "SELECT p.*, c.nom AS categorie_nom 
                 FROM produit p 
                 lEFT JOIN categorie c ON c.id = p.idCategorie";
-        return $this->query($sql)->fetchAll();
+        return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function getById($id) {
         $sql = "SELECT * FROM produit WHERE id = ?";
-        return $this->query($sql, [$id])->fetch();
+        return $this->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function getByNom($nom) {
         $sql = "SELECT * FROM produit WHERE nom = ?";
-        return $this->query($sql, [$nom])->fetch();
+        return $this->query($sql, [$nom])->fetch(PDO::FETCH_ASSOC);
     }
 
     public function create($nom, $prix, $stock, $idCategorie) {
