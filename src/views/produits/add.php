@@ -1,5 +1,4 @@
 <?php 
-session_start();
 include __DIR__ . '/../templates/header.php';
 include __DIR__ . '/../templates/sidebar.php';
 
@@ -75,4 +74,4 @@ if(isset($_SESSION['connectedUser'])){
     header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?action=loginForm');
         exit();
   }
-    ?>
+?>

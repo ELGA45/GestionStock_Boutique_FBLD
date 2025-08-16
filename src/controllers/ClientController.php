@@ -50,7 +50,7 @@ class ClientController {
         if ($infoClient) {
             include __DIR__ . '/../views/clients/edit.php';
         } else {
-            $this->index(); // Retour à la liste
+            header('Location: /GestionStock_Boutique_FBLD/public/routeurs/client.php');
         }
     }
 
@@ -69,7 +69,7 @@ class ClientController {
             $messageClass = "danger";
         }
 
-        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/client.php?action=editForm&m='.$message.'&mc='.$messageClass);
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/client.php?action=editForm&id='.$id.'&m='.$message.'&mc='.$messageClass);
         exit;
     }
 
@@ -80,7 +80,7 @@ class ClientController {
         if ($infoClient) {
             include __DIR__ . '/../views/clients/delete.php';
         } else {
-            $this->index(); // Retour à la liste
+            header('Location: /GestionStock_Boutique_FBLD/public/routeurs/client.php');
         }
     }
 
@@ -90,6 +90,6 @@ class ClientController {
             $client = new Client();
             $client->DeleteClient($id);
         }
-        $this->index(); // Retour à la liste
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/client.php');
     }
 }

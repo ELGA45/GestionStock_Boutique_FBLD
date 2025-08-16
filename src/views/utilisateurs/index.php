@@ -26,8 +26,8 @@ if(isset($_SESSION['connectedUser'])){
         <div class="card-body p-0">
           <?php if($users){ ?>
             <div class="table-responsive">
-              <table class="table table-striped table-hover mb-0">
-                <thead class="bg-dark text-white thead-custom">
+              <table class="table table-bordered table-striped">
+                <thead class="table-dark">
                   <tr class="bg-dark text-white" >
                     <th>Nom</th>
                     <th>Email</th>

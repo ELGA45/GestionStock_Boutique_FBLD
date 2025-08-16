@@ -8,44 +8,40 @@ if(isset($_SESSION['connectedUser'])){
 <div class="content">
   <div class="container-fluid">
     <div class="tab-bord">
-      <h1 class="mb-0">Espace Catégorie</h1>
+      <h1 class="mb-0">Espace Client</h1>
     </div>
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
-        <h2>Liste des Catégorie</h2>
-        <a href="/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=addForm" class="btn btn-dark">
-          ➕ Ajouter une Catégorie
+        <h2>Liste des clients</h2>
+        <a href="/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=addForm" class="btn btn-dark">
+          ➕ Ajouter un client
         </a>
       </div>
 
       <div class="card shadow">
         <div class="card-body p-0">
-          <?php if($categories){ ?>
+          <?php if($clients){ ?>
             <div class="table-responsive">
               <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                   <tr class="bg-dark text-white" >
-                    <th>Libellé</th>
-                    <th>Nombre de produits</th>
-                    <th>Produits</th>
-                    <th>Action</th>
+                    <th>Nom</th>
+                    <th>Email</th>
+                    <th>Téléphone</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($categories as $ctg) { ?>
+                  <?php foreach($clients as $client) { ?>
                     <tr>
-                      <td><?= htmlspecialchars($ctg['nom']) ?></td>
-                      <td><?= htmlspecialchars($ctg['nbr_prdt']) ?></td>
-                      <td> <?php echo "<a href='produitByCategorie.php?id=".$ctg['id']."' class='btn btn-sm btn-info'>
-                                        🔍 Voir Produit
-                                      </a>"
-                            ?>
-                      </td>
+                      <td><?= htmlspecialchars($client['nom']) ?></td>
+                      <td><?= htmlspecialchars($client['email']) ?></td>
+                      <td><?= htmlspecialchars($client['téléphone']) ?></td>
                       <td>
-                        <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=editForm&id=".$ctg['id']."' class='btn btn-sm btn-warning'>
+                        <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=editForm&id=".$client['id']."' class='btn btn-sm btn-warning'>
                                       ✏️ Modifier
                                     </a>&nbsp";
-                              echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=deleteForm&id=".$ctg['id']."' class='btn btn-sm btn-danger'>
+                              echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=deleteForm&id=".$client['id']."' class='btn btn-sm btn-danger'>
                                       🗑️ Supprimer
                                     </a>";
                         ?>
@@ -56,13 +52,14 @@ if(isset($_SESSION['connectedUser'])){
               </table>
             </div>
           <?php } else { ?>
-            <div class="alert alert-warning m-3">Aucun catégorie trouvé.</div>
+            <div class="alert alert-warning m-3">Aucun client trouvé.</div>
           <?php } ?>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 
 <?php 
     include __DIR__ . '/../templates/footer.php'; 

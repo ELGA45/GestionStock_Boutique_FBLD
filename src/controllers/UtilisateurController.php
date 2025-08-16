@@ -56,7 +56,7 @@ class UtilisateurController {
         include __DIR__ . '/../views/utilisateurs/edit.php';
       }
       else {
-        $this->index();
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php');
       }
     }
 
@@ -76,7 +76,7 @@ class UtilisateurController {
       } elseif (strpos($message, '❌') !== false) {
               $messageClass = "danger";
       }
-      header('Location: /GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php?action=addForm&m='.$message.'&mc='.$messageClass);
+      header('Location: /GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php?action=editForm&id='.$id.'&m='.$message.'&mc='.$messageClass);
     }
 
     public function updateStatut($id){
@@ -86,8 +86,8 @@ class UtilisateurController {
         if($infoUser){
           $statut = $infoUser['statut'] == "actif"?"inactif":"actif";
           $user->updateStatut($id, $statut);
-          $this->index();
         }
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php');
     }
 
     public function deleteForm($id) {
@@ -106,7 +106,7 @@ class UtilisateurController {
         $user = new Utilisateur;
         $user->delete($id);
       }
-        $this->index(); // Retour à la liste
+      header('Location: /GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php');
     }
 
 }

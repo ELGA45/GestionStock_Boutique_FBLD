@@ -39,7 +39,11 @@ class Produit extends BaseModel {
       }   
     }
 
-
+    public function info(){
+      $sql = "SELECT COUNT(id) AS nbrProduit, SUM(prix) AS valeurTotal, SUM(stock) AS stockTotal
+              FROM produit ";
+      return $this->query($sql)->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function delete($id) {
         $sql = "DELETE FROM produit WHERE id = ?";

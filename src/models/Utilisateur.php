@@ -35,10 +35,9 @@ class Utilisateur extends BaseModel {
       $sql = "UPDATE utilisateur SET  nom = ?,
                                     email = ?,
                                     mot_de_passe = ?,
-                                    rôle = ?,
-                                    statut = ?
+                                    rôle = ?
                               WHERE id = ?";
-        $this->query($sql, [$nom, $email, $motDePasseHache, $role, $statut, $id]);
+        $this->query($sql, [$nom, $email, $motDePasseHache, $role, $id]);
         return "✅ Utilisateur mise à jour avec succès";
       } catch (PDOException $e) {
           return "❌ Erreur lors de la mise à jour : " . $e->getMessage();

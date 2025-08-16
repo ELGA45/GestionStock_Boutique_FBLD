@@ -9,6 +9,12 @@ class ProduitController {
         $produits = $produit->getAll();
         include __DIR__ . '/../views/produits/index.php';
     }
+
+    public function info(){
+        $infoStock = new Produit();
+        $infos = $infoStock->info();
+        return $infos;
+    }
     
 
     public function addForm($message, $messageClass) {
@@ -51,7 +57,7 @@ class ProduitController {
           include __DIR__ . '/../views/produits/edit.php';
         }
         else{
-          $this->index(); // Retour à la liste
+          header('Location: /GestionStock_Boutique_FBLD/public/routeurs/produit.php');
         }
     }
 
@@ -82,7 +88,7 @@ class ProduitController {
           include __DIR__ . '/../views/produits/delete.php';
         }
         else{
-          $this->index(); // Retour à la liste
+          header('Location: /GestionStock_Boutique_FBLD/public/routeurs/produit.php');
         }
     }
 
@@ -91,7 +97,7 @@ class ProduitController {
         $produit = new Produit();
         $produit->delete($id);
       }
-        $this->index(); // Retour à la liste
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/produit.php');
     }
 
 }

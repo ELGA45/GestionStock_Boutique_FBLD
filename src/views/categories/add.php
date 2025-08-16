@@ -14,13 +14,13 @@ if(isset($_SESSION['connectedUser'])){
     <div class="container mt-5">
       <div class="d-flex justify-content-between align-items-center mb-4">
         <h2>Ajouter une Categorie</h2>
-        <a href="/GestionStock_Boutique_FBLD/public/routeurs/produit.php" class="btn btn-dark">
+        <a href="/GestionStock_Boutique_FBLD/public/routeurs/categorie.php" class="btn btn-dark">
           🔙 Retour
         </a>
       </div>
     </div>
 
-    <form action="/GestionStock_Boutique_FBLD/public/routeurs/produit.php?action=add" 
+    <form action="/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=add" 
           method="POST" class="p-4 shadow rounded bg-white" 
           style="max-width: 500px; margin: auto; margin-top: 20px">
   

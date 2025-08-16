@@ -4,23 +4,22 @@ include __DIR__ . '/../templates/sidebar.php';
 
 if(isset($_SESSION['connectedUser'])){
 ?>
-
-<div class="content">
+ <div class="content">
         <div class="container-fluid">
 
         <div class="tab-bord">
-          <h1 class="mb-0">Espace Utilisateur</h1>
+          <h1 class="mb-0">Espace Client</h1>
         </div>
         <div class="container mt-5">
           <div class="d-flex justify-content-between align-items-center mb-4">
-            <h2>Modifier un utilisateur</h2>
-                <a href="/GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php" class="btn btn-dark">
+            <h2>Modifier un Client</h2>
+                <a href="/GestionStock_Boutique_FBLD/public/routeurs/client.php" class="btn btn-dark">
                   🔙 Retour
                 </a>
           </div>
         </div>
 
-          <form action="/GestionStock_Boutique_FBLD/public/routeurs/utilisateur.php?action=update" 
+          <form action="/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=update" 
                 method="POST" class="p-4 shadow rounded bg-white" 
                 style="max-width: 500px; margin: auto; margin-top: 20px">
 
@@ -31,39 +30,26 @@ if(isset($_SESSION['connectedUser'])){
                   </div>
               <?php endif; ?>
               
-              <input type="hidden" name="id" value="<?= htmlspecialchars($infoUser['id']) ?>">
+              <input type="hidden" name="id" value="<?= htmlspecialchars($infoClient['id']) ?>">
               <!-- Champ Nom -->
               <div class="mb-3">
                   <label for="nom" class="form-label">Nom</label>
                   <input type="text" id="nom" name="nom" class="form-control" placeholder="Entrez le nom"
-                        value="<?= htmlspecialchars($infoUser['nom']) ?>" required>
+                        value="<?= htmlspecialchars($infoClient['nom']) ?>" required>
               </div>
 
               <!-- Champ Email -->
               <div class="mb-3">
                   <label for="email" class="form-label">E-mail</label>
                   <input type="email" id="email" name="email" class="form-control" placeholder="Entrez l'e-mail"
-                        value="<?= htmlspecialchars($infoUser['email']) ?>" required>
+                          value="<?= htmlspecialchars($infoClient['email']) ?>" required>
               </div>
 
-              <!-- Champ Mot de passe -->
+              <!-- Champ Téléphone -->
               <div class="mb-3">
-                  <label for="mot_de_passe" class="form-label">Mot de passe</label>
-                  <input type="password" id="mot_de_passe" name="mot_de_passe" class="form-control" placeholder="Entrez le mot de passe" required>
-              </div>
-
-              <!-- Champ Rôle -->
-              <div class="mb-3">
-                  <label for="role" class="form-label">Rôle</label>
-                  <select id="role" name="role" class="form-select" required>
-                    <?php 
-                          $libelleActu = $infoUser['rôle'] == "admin"?"Administrateur":"Employé";
-                          $role = $infoUser['rôle'] == "admin"?"employé":"admin";
-                          $libelleRole = $role == "admin"?"Administrateur":"Employé"
-                    ?>
-                      <option value="<?= $infoUser['rôle'] ?>"><?= htmlspecialchars($libelleActu) ?></option>
-                      <option value="<?= $role ?>"><?= $libelleRole ?></option>
-                  </select>
+                  <label for="tel" class="form-label">Téléphone</label>
+                  <input type="text" id="tel" name="tel" class="form-control" placeholder="Entrez le Téléphone" 
+                          value="<?= htmlspecialchars($infoClient['téléphone']) ?>"required>
               </div>
 
               <!-- Bouton -->
@@ -71,7 +57,6 @@ if(isset($_SESSION['connectedUser'])){
           </form>
         </div>
       </div>
-
 <?php 
     include __DIR__ . '/../templates/footer.php'; 
   }

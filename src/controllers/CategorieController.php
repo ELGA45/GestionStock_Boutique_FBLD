@@ -32,7 +32,7 @@
             $message = "⚠️ Cet Libellé est déjà enregistré";
             $messageClass = "warning";
         }
-        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/produit.php?action=addForm&m='.$message.'&mc='.$messageClass);
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=addForm&m='.$message.'&mc='.$messageClass);
     }
 
     public function editForm($id, $message, $messageClass) {
@@ -42,7 +42,7 @@
           include __DIR__ . '/../views/categories/edit.php';
         }
         else{
-          $this->index(); // Retour à la liste
+          header('Location: /GestionStock_Boutique_FBLD/public/routeurs/categorie.php');
         }
     }
 
@@ -57,6 +57,7 @@
         } elseif (strpos($message, '⛔') !== false || strpos($message, '❌') !== false) {
                 $messageClass = "danger";
         }
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=editForm&id='.$id.'&m='.$message.'&mc='.$messageClass);
     }
 
     public function deleteForm($id) {
@@ -66,16 +67,16 @@
           include __DIR__ . '/../views/categories/delete.php';
         }
         else{
-          $this->index(); // Retour à la liste
+          header('Location: /GestionStock_Boutique_FBLD/public/routeurs/categorie.php');
         }
     }
 
     public function delete($id, $confirm) {
       if($confirm === 'oui' ){
-        $categorie = new Produit();
+        $categorie = new Categorie();
         $categorie->delete($id);
       }
-        $this->index(); // Retour à la liste
+        header('Location: /GestionStock_Boutique_FBLD/public/routeurs/categorie.php');
     }
 
 
