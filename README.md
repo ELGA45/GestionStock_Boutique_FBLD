@@ -155,10 +155,12 @@ N’hésite pas à proposer des améliorations (meilleure gestion des sessions, 
 
 ## Interfaces
 
-![imgReadme](1.png)<br>
-![imgReadme](2.png)<br>
-![imgReadme](3.png)<br>
-![imgReadme](4.png)<br>
-![imgReadme](5.png)<br>
-![imgReadme](6.png)<br>
-![imgReadme](7.png)<br>
+![Tableau de Bord](imgReadme/1.png)<br>
+![Page Produit](imgReadme/2.png)<br>
+![Page Catégorie](imgReadme/3.png)<br>
+![Page Client](imgReadme/4.png)<br>
+![Page Commande ](imgReadme/5.png)<br>
+Page Utilisateur Admin<br>
+![Page Utilisateur Admin](imgReadme/6.png)<br>
+Page Utilisateur Employé<br>
+![Page Utilisateur Employé](imgReadme/7.png)<br>
