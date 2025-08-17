@@ -1,6 +1,7 @@
 <!-- Social Preview -->
 <meta property="og:image" content="https://github.com/your-username.png" />
 <meta property="og:description" content="Description attrayante de votre projet" />
+<meta property="og:image" content="https://github.com/votre-username/GestionStock_Boutique_FLD/raw/main/social-preview.png" />
 
 # GestionStock_Boutique_FLD
 
