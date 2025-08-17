@@ -11,7 +11,7 @@ GestionStock_Boutique_FLD/<br>
 │<br>
 ├── config/<br>                      
 │   ├── database.php          # Connexion PDO centralisée<br>
-│   ├── config.php            # Variables globales (URL, chemin base, constantes)<br>
+│   └── config.php            # Variables globales (URL, chemin base, constantes)<br>
 │<br>
 ├── public/                   # Racine publique du projet (accessible depuis le navigateur)<br>
 │   ├── dashboard.php         # Tableau de bord (page d’accueil après login)<br>
