@@ -1,3 +1,7 @@
+<!-- Social Preview -->
+<meta property="og:image" content="https://github.com/your-username.png" />
+<meta property="og:description" content="Description attrayante de votre projet" />
+
 # GestionStock_Boutique_FLD
 
 ## Description
