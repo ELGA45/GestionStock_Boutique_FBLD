@@ -129,7 +129,7 @@ GestionStock_Boutique_FLD/<br>
 1. Clone le dépôt :
    ```bash
    git clone https://github.com/ELGA45/GestionStock_Boutique_FLD.git 
-   dossier dans ton serveur local (htdocs, www, etc.).<br>
+   dossier dans ton serveur local (htdocs, www, etc.).
 2. Exécute le script SQL dans sql/gestionstock.sql pour créer la base de données.<br>
 
 3. Ouvre config/database.php et ajuste les identifiants (host, dbname, user, pass).<br>
