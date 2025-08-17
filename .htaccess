@@ -1,0 +1,16 @@
+# Empêcher l'accès direct aux dossiers sensibles
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Bloquer accès direct à config/ et src/
+    RewriteRule ^(config|src)/ - [F,L]
+
+    # Redirection vers dashboard si accès racine
+    DirectoryIndex dashboard.php
+</IfModule>
+
+# Sécuriser fichiers sensibles
+<FilesMatch "\.(env|sql|log|json|lock|config\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>

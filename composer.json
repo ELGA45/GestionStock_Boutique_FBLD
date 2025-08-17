@@ -1,0 +1,20 @@
+{
+  "name": "elga/gestionstock_boutique_fld",
+  "description": "Application de gestion de stock (produits, clients, commandes, utilisateurs) en PHP avec MVC.",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Elga Sow",
+      "email": "ton-email@example.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}
