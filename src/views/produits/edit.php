@@ -32,22 +32,22 @@ if(isset($_SESSION['connectedUser'])){
               <!-- Champ Nom -->
               <div class="mb-3">
                   <label for="nom" class="form-label">Nom</label>
-                  <input type="text" id="nom" name="nom" class="form-control" placeholder="Entrez le Libellé"
+                  <input type="text" id="nom" name="nom" class="form-control"
                         value="<?= htmlspecialchars($infoPrdt['nom']) ?>" required>
               </div>
 
               <!-- Champ prix -->
         <div class="mb-3">
             <label for="prix" class="form-label">Prix</label>
-            <input type="number" id="prix" name="prix" class="form-control" placeholder="Entrez le prix unitair"
+            <input type="number" id="prix" name="prix" class="form-control"
                     value="<?= htmlspecialchars($infoPrdt['prix']) ?>" required>
         </div>
 
         <!-- Champ stock -->
         <div class="mb-3">
             <label for="stock" class="form-label">Stock</label>
-            <input type="number" id="stock" name="stock" class="form-control" placeholder="Entrez le stock" 
-                    value="<?= htmlspecialchars($infoPrdt['stock']) ?>" required>
+            <input type="number" id="stock" name="stock" class="form-control" 
+                    value="<?= number_format($infoPrdt['stock']) ?>" required>
         </div>
         
         <!-- Champ categorie -->

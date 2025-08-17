@@ -47,7 +47,7 @@ if(isset($_SESSION['connectedUser'])){
     include __DIR__ . '/../templates/footer.php'; 
   }
   else {
-    header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?actionloginForm');
+    header('Location:/GestionStock_Boutique_FBLD/public/routeurs/auth.php?action=loginForm');
         exit();
   }
 ?>

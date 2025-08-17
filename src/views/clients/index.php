@@ -19,15 +19,16 @@ if(isset($_SESSION['connectedUser'])){
       </div>
 
       <div class="card shadow">
-        <div class="card-body p-0">
+        <div class="card-body">
           <?php if($clients){ ?>
             <div class="table-responsive">
-              <table class="table table-bordered table-striped">
+              <table class="table table-striped table-hover">
                 <thead class="table-dark">
                   <tr class="bg-dark text-white" >
                     <th>Nom</th>
                     <th>Email</th>
                     <th>Téléphone</th>
+                    <th>Commande</th>
                     <th>Actions</th>
                   </tr>
                 </thead>
@@ -37,6 +38,11 @@ if(isset($_SESSION['connectedUser'])){
                       <td><?= htmlspecialchars($client['nom']) ?></td>
                       <td><?= htmlspecialchars($client['email']) ?></td>
                       <td><?= htmlspecialchars($client['téléphone']) ?></td>
+                      <td> <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=cmdByClient&id=".$client['id']."' class='btn btn-sm btn-info'>
+                                        🔍 Voir Commande
+                                      </a>"
+                            ?>
+                      </td>
                       <td>
                         <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/client.php?action=editForm&id=".$client['id']."' class='btn btn-sm btn-warning'>
                                       ✏️ Modifier

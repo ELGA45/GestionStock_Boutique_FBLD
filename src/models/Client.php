@@ -13,6 +13,14 @@ class Client extends BaseModel {
     return $this->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
   }
 
+  public function getCmdByClient($idClient){
+        $sql = "SELECT c.id AS idCmd, cl.nom AS client, c.dateCommande, c.etat
+                FROM commande c
+                JOIN client cl ON cl.id = c.idClient
+                WHERE cl.id = ?";
+        return $this->query($sql, [$idClient])->fetchAll(PDO::FETCH_ASSOC);
+  }
+
   public function getByEmail($email){
     $sql = "SELECT * FROM client WHERE email = ?";
     return $this->query($sql, [$email])->fetch(PDO::FETCH_ASSOC);

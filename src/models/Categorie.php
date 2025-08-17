@@ -11,6 +11,14 @@ class Categorie extends BaseModel {
         return $this->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function getPrdtsByctg($id){
+      $sql = "SELECT p.nom, prix, stock, c.nom AS categorie
+                                  FROM produit p
+                                  JOIN categorie c ON c.id = p.idCategorie
+                                  WHERE p.idCategorie = ?";
+      return $this->query($sql, [$id])->fetchAll(PDO::FETCH_ASSOC);
+    }
+
     public function getById($id){
       $sql = "SELECT * FROM categorie WHERE id = ?";
       return $this->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);

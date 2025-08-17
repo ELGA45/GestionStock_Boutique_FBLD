@@ -19,12 +19,13 @@ if(isset($_SESSION['connectedUser'])){
       </div>
 
       <div class="card shadow">
-        <div class="card-body p-0">
+        <div class="card-body">
           <?php if($categories){ ?>
             <div class="table-responsive">
-              <table class="table table-bordered table-striped">
+              <table class="table table-striped table-hover">
                 <thead class="table-dark">
                   <tr class="bg-dark text-white" >
+                    <th>#</th>
                     <th>Libellé</th>
                     <th>Nombre de produits</th>
                     <th>Produits</th>
@@ -34,15 +35,17 @@ if(isset($_SESSION['connectedUser'])){
                 <tbody>
                   <?php foreach($categories as $ctg) { ?>
                     <tr>
+                      <td><?= htmlspecialchars($ctg['id']) ?></td>
                       <td><?= htmlspecialchars($ctg['nom']) ?></td>
                       <td><?= htmlspecialchars($ctg['nbr_prdt']) ?></td>
-                      <td> <?php echo "<a href='produitByCategorie.php?id=".$ctg['id']."' class='btn btn-sm btn-info'>
+                      <td> <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=prdtsByCtg&id=".$ctg['id']."' class='btn btn-sm btn-info'>
                                         🔍 Voir Produit
                                       </a>"
                             ?>
                       </td>
                       <td>
-                        <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=editForm&id=".$ctg['id']."' class='btn btn-sm btn-warning'>
+                        <?php echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=editForm&id=".$ctg['id']."' 
+                                          class='btn btn-sm btn-warning'>
                                       ✏️ Modifier
                                     </a>&nbsp";
                               echo "<a href='/GestionStock_Boutique_FBLD/public/routeurs/categorie.php?action=deleteForm&id=".$ctg['id']."' class='btn btn-sm btn-danger'>

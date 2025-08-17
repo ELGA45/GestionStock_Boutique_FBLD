@@ -3,7 +3,7 @@ require_once __DIR__ . '/BaseModel.php';
 
 class Commande extends BaseModel {
     // Ajouter une commande
-    public function AddCommande($idClient, $produits)
+    public function create($idClient, $produits)
     {
         try {
             $this->conn->beginTransaction();
@@ -28,28 +28,31 @@ class Commande extends BaseModel {
             $sqlUpdateStock = "UPDATE produit SET stock = stock - ? WHERE id = ? AND stock >= ?";
             $stmtStock = $this->conn->prepare($sqlUpdateStock);
 
-            foreach ($produits as $p) {
+            foreach ($produits as $idProduit => $quantite) {
+                if ($quantite <= 0) continue; // ignorer les produits non commandés
+
                 // Vérifier si le produit existe et stock suffisant
                 $stmtCheckProd = $this->conn->prepare("SELECT stock FROM produit WHERE id = ?");
-                $stmtCheckProd->execute([$p['idProduit']]);
+                $stmtCheckProd->execute([$idProduit]);
                 $stockActuel = $stmtCheckProd->fetchColumn();
 
                 if ($stockActuel === false) {
                     $this->conn->rollBack();
-                    return "⚠️ Produit ID {$p['idProduit']} introuvable";
+                    return "⚠️ Produit ID {$idProduit} introuvable";
                 }
 
-                if ($stockActuel < $p['quantite']) {
+                if ($stockActuel < $quantite) {
                     $this->conn->rollBack();
-                    return "⚠️ Stock insuffisant pour le produit ID {$p['idProduit']}";
+                    return "⚠️ Stock insuffisant pour le produit ID {$idProduit}";
                 }
 
                 // Ajouter à commande_produit
-                $stmtProd->execute([$idCommande, $p['idProduit'], $p['quantite']]);
+                $stmtProd->execute([$idCommande, $idProduit, $quantite]);
 
                 // Diminuer le stock
-                $stmtStock->execute([$p['quantite'], $p['idProduit'], $p['quantite']]);
+                $stmtStock->execute([$quantite, $idProduit, $quantite]);
             }
+
 
             $this->conn->commit();
             return "✅ Commande ajoutée et stock mis à jour avec succès";
@@ -70,10 +73,19 @@ class Commande extends BaseModel {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function commandeById($id)
+    {
+        $sql = "SELECT c.id AS idClient, cl.nom AS client, c.dateCommande, c.etat
+                FROM commande c
+                JOIN client cl ON cl.id = c.idClient
+                WHERE c.id = ?";
+        return $this->query($sql, [$id])->fetch(PDO::FETCH_ASSOC);
+    }
+
     // Détails d'une commande
     public function DetailsCommande($idCommande)
     {
-        $sql = "SELECT p.nom, cp.quantite, p.prix, (cp.quantite * p.prix) AS total
+        $sql = "SELECT p.nom  , cp.quantite, p.prix, (cp.quantite * p.prix) AS total
                 FROM commande_produit cp
                 JOIN produit p ON p.id = cp.idProduit
                 WHERE cp.idCommande = ?";
@@ -86,18 +98,19 @@ class Commande extends BaseModel {
     try {
         $this->conn->beginTransaction();
 
-        // Supprimer les anciens produits de la commande
-        $sqlDeleteProd = "DELETE FROM commande_produit WHERE idCommande = ?";
-        $stmtDel = $this->conn->prepare($sqlDeleteProd);
-        $stmtDel->execute([$idCommande]);
-
-        // Remettre le stock des anciens produits
+        // 1. Remettre le stock des anciens produits
         $sqlStockRetour = "UPDATE produit p 
                           JOIN commande_produit cp ON p.id = cp.idProduit 
                           SET p.stock = p.stock + cp.quantite 
                           WHERE cp.idCommande = ?";
         $stmtStockRetour = $this->conn->prepare($sqlStockRetour);
         $stmtStockRetour->execute([$idCommande]);
+
+        // 2. Supprimer les anciens produits de la commande
+        $sqlDeleteProd = "DELETE FROM commande_produit WHERE idCommande = ?";
+        $stmtDel = $this->conn->prepare($sqlDeleteProd);
+        $stmtDel->execute([$idCommande]);
+
 
         // Mettre à jour le client
         $sqlUpdateCmd = "UPDATE commande SET idClient = ? WHERE id = ?";
@@ -128,19 +141,9 @@ class Commande extends BaseModel {
     // Modifier état d'une commande
     public function UpdateEtat($idCommande, $nouvelEtat)
     {
-        $sqlCheck = "SELECT etat FROM commande WHERE id = ?";
-        $stmtCheck = $this->conn->prepare($sqlCheck);
-        $stmtCheck->execute([$idCommande]);
-        $etatActuel = $stmtCheck->fetchColumn();
-
-        if ($etatActuel === 'livrée') {
-            return "⚠️ Impossible de modifier une commande déjà livrée";
-        }
-
         $sql = "UPDATE commande SET etat = ? WHERE id = ?";
         $stmt = $this->conn->prepare($sql);
         $stmt->execute([$nouvelEtat, $idCommande]);
-        return "✅ État de la commande mis à jour";
     }
 
     // Supprimer une commande
@@ -156,7 +159,7 @@ class Commande extends BaseModel {
             $this->conn->beginTransaction();
 
             // Si livrée → on remet le stock
-            if ($etat === 'livrée') {
+            if ($etat !== 'livrée') {
                 $sqlSelect = "SELECT idProduit, quantite FROM commande_produit WHERE idCommande = ?";
                 $stmtSelect = $this->conn->prepare($sqlSelect);
                 $stmtSelect->execute([$idCommande]);

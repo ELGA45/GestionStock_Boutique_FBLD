@@ -23,10 +23,10 @@ if(isset($_SESSION['connectedUser'])){
       </div>
 
       <div class="card shadow">
-        <div class="card-body p-0">
+        <div class="card-body">
           <?php if($users){ ?>
             <div class="table-responsive">
-              <table class="table table-bordered table-striped">
+              <table class="table table-striped table-hover">
                 <thead class="table-dark">
                   <tr class="bg-dark text-white" >
                     <th>Nom</th>

@@ -3,10 +3,16 @@
   include '../src/views/templates/header.php';
   include '../src/views/templates/sidebar.php';
   require_once __DIR__ . '/../src/controllers/ProduitController.php';
+  require_once __DIR__ . '/../src/controllers/CommandeController.php';
 
   if(isset($_SESSION['connectedUser'])){
-    $controller = new ProduitController();
-    $info = $controller->info();
+    $controllerPrdt = new ProduitController();
+    $info = $controllerPrdt->info();
+
+    $controllerCmd = new CommandeController();
+    $mvt = $controllerCmd->info();
+
+    $nbrCmd = 0
 ?>
 
     <!-- Contenu principal -->
@@ -53,33 +59,33 @@
         <!-- Tableau des mouvements récents -->
         <div class="card shadow-sm">
           <div class="card-header bg-dark text-white">
-            Mouvements récents
+            Commandes récentes
           </div>
           <div class="card-body p-0">
-            <table class="table table-striped table-hover mb-0">
+            <table class="table table-striped table-hover ">
               <thead>
                 <tr>
+                  <th>#</th>
+                  <th>Nom</th>
                   <th>Date</th>
-                  <th>Produit</th>
-                  <th>Quantité</th>
+                  <th>Etat</th>
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>18/04/2024</td>
-                  <td>Produit D</td>
-                  <td class="text-danger">-2</td>
-                </tr>
-                <tr>
-                  <td>16/04/2024</td>
-                  <td>Produit A</td>
-                  <td class="text-success">+10</td>
-                </tr>
-                <tr>
-                  <td>15/04/2024</td>
-                  <td>Produit C</td>
-                  <td class="text-danger">-5</td>
-                </tr>
+                <?php foreach ($mvt as $cmd) { 
+                  $nbrCmd++;
+                ?>
+                    <tr>
+                      <td><?= htmlspecialchars($cmd['id']) ?></td>
+                      <td><?= htmlspecialchars($cmd['client']) ?></td>
+                      <td><?= htmlspecialchars($cmd['dateCommande']) ?></td>
+                      <td><?= htmlspecialchars($cmd['etat']) ?></td>
+                  </tr>
+                <?php 
+                  if($nbrCmd == 10){
+                    break;
+                  }
+              } ?>
               </tbody>
             </table>
           </div>

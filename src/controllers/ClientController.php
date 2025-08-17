@@ -10,6 +10,17 @@ class ClientController {
         include __DIR__ . '/../views/clients/index.php';
     }
 
+    public function CmdByClient($id) {
+        $client = new Client();
+        $cmds = $client->getCmdByClient($id);
+        $infoClient = $client->getById($id);
+        if($infoClient){
+          include __DIR__ . '/../views/clients/cmdByClient.php';
+        }else{
+          include __DIR__ . '/../views/clients/index.php';
+        }
+    }
+
     // Formulaire d'ajout
     public function addForm($message = '', $messageClass = '') {
         include __DIR__ . '/../views/clients/add.php';
@@ -19,7 +30,7 @@ class ClientController {
     public function add() {
         $nom = $_POST['nom'] ?? '';
         $email = $_POST['email'] ?? '';
-        $telephone = $_POST['telephone'] ?? '';
+        $telephone = $_POST['tel'] ?? '';
 
         $newClient = new Client();
         $clientExist = $newClient->getByEmail($email);
@@ -58,7 +69,7 @@ class ClientController {
     public function update($id) {
         $nom = $_POST['nom'] ?? '';
         $email = $_POST['email'] ?? '';
-        $telephone = $_POST['telephone'] ?? '';
+        $telephone = $_POST['tel'] ?? '';
 
         $editClient = new Client();
         $message = $editClient->update($id, $nom, $email, $telephone);

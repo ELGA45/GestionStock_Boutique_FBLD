@@ -12,25 +12,35 @@ switch ($action) {
     case 'addForm':
             $controller->addForm($message, $messageClass);
         break;
+
+    case 'prdtsByCtg':
+            $controller->prdtsByCtg($id);
+        break;
+
     case 'add':
             $controller->add();
         break;
+
     case 'editForm':
             if ($id) {
               $controller->editForm($id, $message, $messageClass);
             }
         break;
+
     case 'update':
             $controller->update($_POST['id']);
         break;
+
     case 'deleteForm':
             if ($id) {
               $controller->deleteForm($id);
             }
         break;
+
     case 'delete':
             $controller->delete($_POST['id'], $_POST['confirm']);
         break;
+
     default:
             $controller->index();
         break;

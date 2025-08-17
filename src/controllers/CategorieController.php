@@ -9,6 +9,17 @@
         include __DIR__ . '/../views/categories/index.php';
     }
 
+    public function prdtsByCtg($id) {
+        $categorie = new Categorie();
+        $prdts = $categorie->getPrdtsByctg($id);
+        $infoCtg = $categorie->getById($id);
+        if($infoCtg){
+          include __DIR__ . '/../views/categories/prdtsByCtg.php';
+        }else{
+          include __DIR__ . '/../views/categories/index.php';
+        }
+    }
+
     public function addForm($message, $messageClass) {
         include __DIR__ . '/../views/categories/add.php';
     }

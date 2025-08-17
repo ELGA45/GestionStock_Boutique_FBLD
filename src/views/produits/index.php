@@ -20,15 +20,13 @@
       </div>
 
       <div class="card shadow">
-        <div class="card-body p-0">
-          <?php if($produits){ 
-            $nmr = 0;
-          ?>
+        <div class="card-body">
+          <?php if($produits){ ?>
             <div class="table-responsive">
-              <table class="table table-bordered table-striped">
+              <table class="table table-striped table-hover">
                 <thead class="table-dark">
                   <tr class="bg-dark text-white" >
-                    <th>Numéro</th>
+                    <th>#</th>
                     <th>Libellé</th>
                     <th>Prix (FCFA)</th>
                     <th>Stock</th>
@@ -37,12 +35,9 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <?php foreach($produits as $prdt) { 
-                    $nmr++;
-                  ?>
-                    
+                  <?php foreach($produits as $prdt) { ?>
                     <tr>
-                      <td><?= $nmr ?></td>
+                      <td><?= htmlspecialchars($prdt['id']) ?></td>
                       <td><?= htmlspecialchars($prdt['nom']) ?></td>
                       <td><?= number_format($prdt['prix'], 2, ',', ' ') ?></td>
                       <td><?= number_format($prdt['stock']) ?></td>
