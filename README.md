@@ -7,107 +7,105 @@ Application web PHP simple permettant de gérer les produits, les catégories, l
 
 ## Structure du projet
 
-GestionStock_Boutique_FLD/
-│
-├── config/                         
-│   ├── database.php          # Connexion PDO centralisée
-│   ├── config.php            # Variables globales (URL, chemin base, constantes)
-│
-├── public/                   # Racine publique du projet (accessible depuis le navigateur)
-│   ├── dashboard.php         # Tableau de bord (page d’accueil après login)
-│   │
-│   ├── routes/               # Regroupe les points d’entrée de chaque module
-│   │   ├── auth.php          # Entrée Authentification (login, logout)
-│   │   ├── produit.php       # Entrée gestion produits
-│   │   ├── categorie.php     # Entrée gestion catégories
-│   │   ├── client.php        # Entrée gestion clients
-│   │   ├── commande.php      # Entrée gestion commandes
-│   │   └── utilisateur.php   # Entrée gestion utilisateurs
-│   │
-│   ├── uploads/              # Fichiers uploadés
-│   │   ├── produits/         # Images produits
-│   │   └── clients/          # Images clients (optionnel)
-│   │
-│   ├── css/
-│   │   ├── style.css         # Styles personnalisés
-│   │   └── bootstrap.min.css # Bootstrap local
-│   │
-│   ├── js/
-│   │   └── app.js            # Scripts personnalisés (validation formulaires, etc.)
-│   │
-│   └──images/
-│       └── logo.png          # Logo de la boutique
-│ 
-│
-│
-├── src/
-│   ├── controllers/          # Contrôleurs : logique métier
-│   │   ├── AuthController.php
-│   │   ├── ProduitController.php
-│   │   ├── CategorieController.php
-│   │   ├── ClientController.php
-│   │   ├── CommandeController.php
-│   │   └── UtilisateurController.php
-│   │
-│   ├── models/               # Modèles : accès BDD via PDO
-│   │   ├── BaseModel.php
-│   │   ├── Utilisateur.php
-│   │   ├── Produit.php
-│   │   ├── Categorie.php
-│   │   ├── Client.php
-│   │   └── Commande.php
-│   │
-│   └── views/                # Vues (HTML/PHP)
-│       ├── templates/        # Templates communs
-│       │   ├── header.php
-│       │   ├── footer.php
-│       │   ├── navbar.php
-│       │   └── sidebar.php
-│       │
-│       ├── auth/             # Authentification
-│       │   ├── login.php
-│       │   ├── register.php
-│       │   └── logout.php
-│       │
-│       ├── produits/         # CRUD Produits
-│       │   ├── index.php
-│       │   ├── add.php
-│       │   ├── edit.php
-│       │   └── delete.php
-│       │
-│       ├── categories/       # CRUD Catégories
-│       │   ├── index.php
-│       │   ├── produitByCategorie.php
-│       │   ├── add.php
-│       │   ├── edit.php
-│       │   └── delete.php
-│       │
-│       ├── clients/          # CRUD Clients
-│       │   ├── index.php
-│       │   ├── CommandeByClient.php
-│       │   ├── add.php
-│       │   ├── edit.php
-│       │   └── delete.php
-│       │
-│       ├── commandes/        # CRUD Commandes + suivi état
-│       │   ├── index.php
-│       │   ├── add.php
-│       │   ├── edit.php
-│       │   ├── editEtat.php
-│       │   └── delete.php
-│       │
-│       └── utilisateurs/     # CRUD Utilisateurs
-│           ├── index.php
-│           ├── add.php
-│           ├── edit.php
-│           └── delete.php
-│
-├── sql/
-│   └── gestionstock.sql      # Script SQL complet
-│
-├── .htaccess                 # Redirections + sécurité
-├── README.md                 # Documentation du projet
-└── composer.json             # Autoload (si Composer utilisé)
+GestionStock_Boutique_FLD/<br>
+│<br>
+├── config/<br>                      
+│   ├── database.php          # Connexion PDO centralisée<br>
+│   ├── config.php            # Variables globales (URL, chemin base, constantes)<br>
+│<br>
+├── public/                   # Racine publique du projet (accessible depuis le navigateur)<br>
+│   ├── dashboard.php         # Tableau de bord (page d’accueil après login)<br>
+│   │<br>
+│   ├── routes/               # Regroupe les points d’entrée de chaque module<br>
+│   │   ├── auth.php          # Entrée Authentification (login, logout)<br>
+│   │   ├── produit.php       # Entrée gestion produits<br>
+│   │   ├── categorie.php     # Entrée gestion catégories<br>
+│   │   ├── client.php        # Entrée gestion clients<br>
+│   │   ├── commande.php      # Entrée gestion commandes<br>
+│   │   └── utilisateur.php   # Entrée gestion utilisateurs<br>
+│   │<br>
+│   ├── uploads/              # Fichiers uploadés<br>
+│   │   ├── produits/         # Images produits<br>
+│   │   └── clients/          # Images clients (optionnel)<br>
+│   │<br>
+│   ├── css/<br>
+│   │   ├── style.css         # Styles personnalisés<br>
+│   │   └── bootstrap.min.css # Bootstrap local<br>
+│   │<br>
+│   ├── js/<br>
+│   │   └── app.js            # Scripts personnalisés (validation formulaires, etc.)<br>
+│   │<br>
+│   └──images/<br>
+│       └── logo.png          # Logo de la boutique<br>
+│ <br>
+│<br>
+│<br>
+├── src/<br>
+│   ├── controllers/          # Contrôleurs : logique métier<br>
+│   │   ├── AuthController.php<br>
+│   │   ├── ProduitController.php<br>
+│   │   ├── CategorieController.php<br>
+│   │   ├── ClientController.php<br>
+│   │   ├── CommandeController.php<br>
+│   │   └── UtilisateurController.php<br>
+│   │<br>
+│   ├── models/               # Modèles : accès BDD via PDO<br>
+│   │   ├── BaseModel.php<br>
+│   │   ├── Utilisateur.php<br>
+│   │   ├── Produit.php<br>
+│   │   ├── Categorie.php<br>
+│   │   ├── Client.php<br>
+│   │   └── Commande.php<br>
+│   │<br>
+│   └── views/                # Vues (HTML/PHP)<br>
+│       ├── templates/        # Templates communs<br>
+│       │   ├── header.php<br>
+│       │   ├── footer.php<br>
+│       │   └── sidebar.php<br>
+│       │<br>
+│       ├── auth/             # Authentification<br>
+│       │   ├── login.php<br>
+│       │   └── logout.php<br>
+│       │<br>
+│       ├── produits/         # CRUD Produits<br>
+│       │   ├── index.php<br>
+│       │   ├── add.php<br>
+│       │   ├── edit.php<br>
+│       │   └── delete.php<br>
+│       │<br>
+│       ├── categories/       # CRUD Catégories<br>
+│       │   ├── index.php<br>
+│       │   ├── produitByCategorie.php<br>
+│       │   ├── add.php<br>
+│       │   ├── edit.php<br>
+│       │   └── delete.php<br>
+│       │<br>
+│       ├── clients/          # CRUD Clients<br>
+│       │   ├── index.php<br>
+│       │   ├── CommandeByClient.php<br>
+│       │   ├── add.php<br>
+│       │   ├── edit.php<br>
+│       │   └── delete.php<br>
+│       │<br>
+│       ├── commandes/        # CRUD Commandes + suivi état<br>
+│       │   ├── index.php<br>
+│       │   ├── add.php<br>
+│       │   ├── edit.php<br>
+│       │   ├── editEtat.php<br>
+│       │   └── delete.php<br>
+│       │<br>
+│       └── utilisateurs/     # CRUD Utilisateurs<br>
+│           ├── index.php<br>
+│           ├── add.php<br>
+│           ├── edit.php<br>
+│           └── delete.php<br>
+│<br>
+├── sql/<br>
+│   └── gestionstock.sql      # Script SQL complet<br>
+│<br>
+├── .htaccess                 # Redirections + sécurité<br>
+├── README.md                 # Documentation du projet<br>
+└── composer.json             # Autoload (si Composer utilisé)<br>
 
 
 
