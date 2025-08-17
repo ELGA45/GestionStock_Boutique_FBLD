@@ -151,4 +151,14 @@ Les fichiers (formulaires) utilisent des validateurs simples côté PHP, et renv
 
 ## Contribution
 
-N’hésite pas à proposer des améliorations (meilleure gestion des sessions, role-based access control, validation JS, upload sécurisé, etc.).<br>              
+N’hésite pas à proposer des améliorations (meilleure gestion des sessions, role-based access control, validation JS, upload sécurisé, etc.).<br>   
+
+## Interfaces
+
+![imgReadme](1.png)<br>
+![imgReadme](2.png)<br>
+![imgReadme](3.png)<br>
+![imgReadme](4.png)<br>
+![imgReadme](5.png)<br>
+![imgReadme](6.png)<br>
+![imgReadme](7.png)<br>
